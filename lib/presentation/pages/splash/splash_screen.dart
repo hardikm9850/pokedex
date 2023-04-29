@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/constants/image_constants.dart';
 
+import '../home/home_screen.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -12,9 +14,17 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 500), () {
+
+    Future.delayed(const Duration(milliseconds: 1500), () {
+      // Declarative navigation
       Navigator.of(context).pushReplacementNamed('/home');
+      // Imperative navigation
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
     });
+  }
+
+  Future<String> fooVal() async {
+    return await Future.value("");
   }
 
   @override
@@ -31,10 +41,10 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Image.asset(ImageConstants.pokeballIcon),
             const SizedBox(width: 16),
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   'POKEMON',
                   style: TextStyle(

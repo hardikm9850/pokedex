@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Pokedex',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         sliderTheme: SliderTheme.of(context).copyWith(
           trackHeight: 4,
