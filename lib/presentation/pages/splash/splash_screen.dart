@@ -17,14 +17,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Future.delayed(const Duration(milliseconds: 1500), () {
       // Declarative navigation
-      Navigator.of(context).pushReplacementNamed('/home');
+      // Navigator.of(context).pushReplacementNamed('/home');
       // Imperative navigation
       Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
     });
-  }
-
-  Future<String> fooVal() async {
-    return await Future.value("");
   }
 
   @override
