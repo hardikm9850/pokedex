@@ -18,8 +18,10 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(milliseconds: 1500), () {
       // Declarative navigation
       // Navigator.of(context).pushReplacementNamed('/home');
+
       // Imperative navigation
       Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+      
     });
   }
 
@@ -30,6 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
+        //alignment: Alignment.center,
         alignment: FractionalOffset.center,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(width: 16),
             const Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   'POKEMON',

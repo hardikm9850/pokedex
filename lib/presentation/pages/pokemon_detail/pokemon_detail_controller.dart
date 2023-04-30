@@ -12,16 +12,17 @@ import 'package:pokedex/domain/usecases/save_to_favourites.dart'
     as save_to_favourites;
 import 'package:pokedex/presentation/injector.dart';
 import 'package:pokedex/presentation/pages/home/home_screen_controller.dart';
+import 'package:pokedex/shared/providers.dart';
 
 final pokemonStateProvider = StateProvider.autoDispose<bool>((ref) => false);
 final pokemonDetailControllerProvider =
     Provider.autoDispose<PokemonDetailController>(
         (ref) => PokemonDetailController(
               ref,
-              checkIfFavouriteUsecase: Injector.checkIfFavouriteUsecase,
-              getFavouriteListUsecase: Injector.getFavouriteListUsecase,
-              saveToFavouritesUsecase: Injector.saveToFavouritesUsecase,
-              removeFromFavouritesUseCase: Injector.removeFromFavouritesUseCase,
+              checkIfFavouriteUsecase: ref.watch(checkIfFavoriteProvider),
+              getFavouriteListUsecase: ref.watch(getFavoriteListProvider),
+              saveToFavouritesUsecase: ref.watch(saveToFavoritesProvider),
+              removeFromFavouritesUseCase: ref.watch(removeFromFavoritesProvider),
             ));
 
 class PokemonDetailController {

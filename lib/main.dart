@@ -5,12 +5,19 @@ import 'package:pokedex/presentation/injector.dart';
 import 'package:pokedex/presentation/pages/home/home_screen.dart';
 import 'package:pokedex/presentation/pages/pokemon_detail/pokemon_detail_screen.dart';
 import 'package:pokedex/presentation/pages/splash/splash_screen.dart';
+import 'package:pokedex/shared/providers.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Injector.init();
-  runApp(const ProviderScope(
-    child: MyApp(),
+
+  final SharedPreferences preference = await SharedPreferences.getInstance();
+
+  runApp(ProviderScope(
+    overrides: [
+      sharedPreferenceProvider.overrideWithValue(preference)
+    ],
+    child: const MyApp(),
   ));
 }
 

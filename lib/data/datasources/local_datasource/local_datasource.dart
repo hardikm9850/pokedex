@@ -1,8 +1,12 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pokedex/shared/providers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
 class LocalDatasource {
-  final SharedPreferences sharedPreferences;
-  const LocalDatasource(this.sharedPreferences);
+  SharedPreferences sharedPreferences;
+  LocalDatasource(this.sharedPreferences);
+
   final String listKey = 'favourites';
 
   List<String> fetchFavouritesList() {

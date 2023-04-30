@@ -12,7 +12,7 @@ import 'package:pokedex/domain/usecases/save_to_favourites.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Injector {
-  static late SharedPreferences sharedPreferences;
+  /*static late SharedPreferences sharedPreferences;
   static init() async {
     sharedPreferences = await SharedPreferences.getInstance();
   }
@@ -21,6 +21,8 @@ class Injector {
   static LocalDatasource localDatasource = LocalDatasource(sharedPreferences);
   static PokemonRepository pokemonRepository = PokemonRepositoryImpl(
       localDatasource: localDatasource, dataSource: remoteDataSource);
+
+
   static GetPokemons getPokemonsUsecase = GetPokemons(pokemonRepository);
   static GetPokemonByName getPokemonByNameUsecase =
       GetPokemonByName(pokemonRepository);
@@ -31,5 +33,5 @@ class Injector {
   static GetFavouriteList getFavouriteListUsecase =
       GetFavouriteList(pokemonRepository);
   static RemoveFromFavourites removeFromFavouritesUseCase =
-      RemoveFromFavourites(pokemonRepository);
+      RemoveFromFavourites(pokemonRepository);*/
 }

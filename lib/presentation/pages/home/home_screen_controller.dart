@@ -17,13 +17,6 @@ final pokemonListProvider =
 final favouriteListProvider =
     StateProvider<List<PokemonDetailEntity>>((ref) => []);
 
-final homeScreenControllerProvider =
-    Provider.autoDispose<HomeScreenController>((ref) => HomeScreenController(
-          ref,
-          getPokemonsUsecase: Injector.getPokemonsUsecase,
-          getPokemonsByNameUsecase: Injector.getPokemonByNameUsecase,
-          getFavouriteListUsecase: Injector.getFavouriteListUsecase,
-        ));
 
 class HomeScreenController {
   late ProviderRef ref;
@@ -33,6 +26,8 @@ class HomeScreenController {
 
   static final HomeScreenController _singleton =
       HomeScreenController._internal();
+
+  HomeScreenController._internal();
 
   factory HomeScreenController(
     ProviderRef reference, {
@@ -46,8 +41,6 @@ class HomeScreenController {
     _singleton.getFavouriteListUsecase = getFavouriteListUsecase;
     return _singleton;
   }
-
-  HomeScreenController._internal();
 
   PokemonResponseEntity? responseEntity;
 
@@ -91,6 +84,7 @@ class HomeScreenController {
         .execute(get_pokemon_by_name.Params(name: name));
   }
 
+  ///
   Future<List<PokemonDetailEntity>> getFavourites() async {
     List<PokemonDetailEntity> pokemonDetailList = [];
     try {
@@ -102,7 +96,11 @@ class HomeScreenController {
           pokemonDetailList.add(detail);
         }
       }
+      // update the StateProvider
       ref.read(favouriteListProvider.notifier).state = pokemonDetailList;
+
+      ref.read(favouriteListProvider.notifier).update((state) => pokemonDetailList);
+
       return pokemonDetailList;
     } catch (e) {
       rethrow;

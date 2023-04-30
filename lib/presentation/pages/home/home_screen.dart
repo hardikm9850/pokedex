@@ -8,6 +8,8 @@ import 'package:pokedex/presentation/widgets/all_pokemon_widget.dart';
 import 'package:pokedex/presentation/widgets/favourites_widget.dart';
 import 'package:pokedex/presentation/widgets/home_screen_appbar_title.dart';
 
+import '../../../shared/providers.dart';
+
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -18,12 +20,15 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   void initState() {
-    ref.read(homeScreenControllerProvider).getFavourites();
+    print("\n HomeScreen initState should be invoked once");
+    Future.delayed(const Duration(milliseconds: 100),
+        () => ref.read(homeScreenControllerProvider).getFavourites());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -31,7 +36,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         appBar: AppBar(
             backgroundColor: Colors.white,
             centerTitle: true,
-            title: HomeScreenAppBarTitle(),
+            title: const HomeScreenAppBarTitle(),
             bottom: TabBar(
               indicatorWeight: 4,
               indicatorColor: ColorConstants.primaryBlue,
